@@ -66,6 +66,15 @@ Dont let me alone. Ask questions, keep interactive.
     2. Databases
     3. KV engine
 
+## Demo for `vault secrets engine - KV`  
+### Enable engine
+
+    vault secrets enable -path=kv-v2 kv-v2
+
+### Configure Engine
+
+    vault kv put kv-v2/secret1 password=supersecret
+
 ## Demo for `vault secrets engine - LDAP`  
 ### Enable engine
 
@@ -94,7 +103,9 @@ Dont let me alone. Ask questions, keep interactive.
 
 ### Check that the pasword is working
 
-    vault write auth/approle/login     role_id=<your_role_id>     secret_id=<your_secret_id>
+    ldapsearch -b "cn=johnny,dc=learn,dc=example" \
+    -D 'cn=alice,ou=users,dc=learn,dc=example' -h 4.157.222.221:389 \
+    -w
 
 
 ## Vault Policies
@@ -103,6 +114,14 @@ Dont let me alone. Ask questions, keep interactive.
 
 ![Pollicyworkflow](https://developer.hashicorp.com/_next/image?url=https%3A%2F%2Fcontent.hashicorp.com%2Fapi%2Fassets%3Fproduct%3Dvault%26version%3Drefs%252Fheads%252Frelease%252F1.15.x%26asset%3Dwebsite%252Fpublic%252Fimg%252Fvault-policy-workflow.svg%26width%3D669%26height%3D497&w=1920&q=75)
 
+## Demo for `vault policy`  
+### Create Policy
+
+    cat > app-read.hcl << EOF
+    path "ldap/static-cred/learn" {
+    capabilities = ["read"]
+    }
+    EOF
 
 ## labs
 
