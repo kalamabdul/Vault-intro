@@ -26,7 +26,7 @@ Dont let me alone. Ask questions, keep interactive.
     2. LDAP
 
 ## Demo for `vault auth method Approle`  
-### Enable Approle"
+### *Enable Approle*
 
     vault auth enable approle
 
