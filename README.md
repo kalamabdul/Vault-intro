@@ -37,7 +37,7 @@ Dont let me alone. Ask questions, keep interactive.
     token_max_ttl=1h \
     secret_id_ttl=1h \
     secret_id_num_uses=5 \
-    token_policies=kv-read-policy
+    token_policies=app-read
 
 
 ### Fetch the role id from the approle"
@@ -117,17 +117,7 @@ Dont let me alone. Ask questions, keep interactive.
 ## Demo for `vault policy`  
 ### Create Policy
 
-    cat > app-read.hcl << EOF
-    path "ldap/static-cred/learn" {
-    capabilities = ["read"]
-    path "kv-v2/*" {
-    capabilities = ["read"]
-    }
-    path "kv-v2/secret1" {
-    capabilities = ["read"]
-    }
-    }
-    EOF
+    vault policy write app-read app-read.hcl
 
 ## labs
 
