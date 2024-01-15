@@ -61,39 +61,38 @@ Dont let me alone. Ask questions, keep interactive.
 * Secrets engines are Vault components which store, generate or encrypt secrets
 * KV store, dynamic creds, Encryption as service
 * Secret engines are plugins that need to be enabled
-* Token auth method is already enabled
 * Types of secrets engines
     1. Ldap
     2. Databases
     3. KV engine
 
 ## Demo for `vault secrets engine - LDAP`  
-### Enable engine"
+### Enable engine
 
     vault secrets enable ldap
 
-### Configure Engine"
+### Configure Engine
 
     vault write ldap/config \
     binddn=cn=admin,dc=learn,dc=example \
     bindpass=2LearnVault \
-    url=ldap://20.120.122.167
+    url=ldap://4.157.222.221
    
 
 
-### Vault the account"
+### Vault the account
 
     vault write ldap/static-role/learn \
     dn='cn=alice,ou=users,dc=learn,dc=example' \
     username='alice' \
     rotation_period="600s"
 
-### Read the password"
+### Read the password
 
     vault read ldap/static-cred/learn
 
 
-### Check that the pasword is working:
+### Check that the pasword is working
 
     vault write auth/approle/login     role_id=<your_role_id>     secret_id=<your_secret_id>
 
