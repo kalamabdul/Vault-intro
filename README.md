@@ -2,26 +2,32 @@
 
 
 ## what is vault  
+
+___
 * secrets management solution - what is a secret?
 * Single source of secerts
 * Provides Lifecycle Management for Secrets
 
 ![Demo](https://developer.hashicorp.com/_next/image?url=https%3A%2F%2Fcontent.hashicorp.com%2Fapi%2Fassets%3Fproduct%3Dvault%26version%3Drefs%252Fheads%252Frelease%252F1.15.x%26asset%3Dwebsite%252Fpublic%252Fimg%252Fhow-vault-works.png%26width%3D2077%26height%3D1343&w=3840&q=75)
 
+## How it works
+
+![how it works](https://developer.hashicorp.com/_next/image?url=https%3A%2F%2Fcontent.hashicorp.com%2Fapi%2Fassets%3Fproduct%3Dvault%26version%3Drefs%252Fheads%252Frelease%252F1.15.x%26asset%3Dwebsite%252Fpublic%252Fimg%252Fvault-workflow-diagram1.png%26width%3D8300%26height%3D9000&w=3840&q=75)
+
 ## Auth methods
 * Perform authentication and assign policy to the token
 * Humans vs Machines Auth methods
 * Token auth method is already enabled
 * Types of auth method
-    1. Ldap
-    2. Approle
+    1. Approle
+    2. LDAP
 
-## Demo for `vault auth`  
+## Demo for `vault auth method Approle`  
 ### Enable Approle"
 
     vault auth enable approle
 
-### Configure approle"
+### Configure Approle"
 
     vault write auth/approle/role/my-role \
     token_ttl=1h \
