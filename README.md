@@ -1,7 +1,7 @@
 # Vault-intro
 Dont let me alone. Ask questions, keep interactive.
 
-![Demo](https://media.giphy.com/media/H6cmWzp6LGFvqjidB7/giphy.gif)
+<img src="https://media.giphy.com/media/H6cmWzp6LGFvqjidB7/giphy.gif" width="400" height="790">
 
 ## what is vault  
 
