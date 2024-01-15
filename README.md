@@ -71,9 +71,15 @@ Dont let me alone. Ask questions, keep interactive.
 
     vault secrets enable -path=kv-v2 kv-v2
 
-### Configure Engine
+### Add Static secrets
 
     vault kv put kv-v2/secret1 password=supersecret
+    vault kv put kv-v2/secret2 password=supersecret2
+
+### Read Static secrets
+
+    vault kv get kv-v2/secret1
+    vault kv get kv-v2/secret2
 
 ## Demo for `vault secrets engine - LDAP`  
 ### Enable engine
@@ -89,11 +95,19 @@ Dont let me alone. Ask questions, keep interactive.
    
 
 
-### Vault the account
+### Vault the account "alice"
 
     vault write ldap/static-role/learn \
     dn='cn=alice,ou=users,dc=learn,dc=example' \
     username='alice' \
+    rotation_period="600s"
+
+
+### Vault the account "alice2"
+
+    vault write ldap/static-role/learn2 \
+    dn='cn=alice2,ou=users,dc=learn,dc=example' \
+    username='alice2' \
     rotation_period="600s"
 
 ### Read the password

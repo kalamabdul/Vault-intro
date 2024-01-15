@@ -3,9 +3,6 @@
 path "ldap/static-cred/learn" {
   capabilities = ["read"]
 }
-path "kv-v2/*" {
-capabilities = ["read"]
-}
-path "kv-v2/secret1" {
+path "kv-v2/data/secret1" {
   capabilities = ["read"]
 }
