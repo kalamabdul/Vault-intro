@@ -1,9 +1,10 @@
 # Vault-intro
-
+Dont let me alone. Ask questions, keep interactive.
+![Alt Text](https://media.giphy.com/media/H6cmWzp6LGFvqjidB7/giphy.gif)
 
 ## what is vault  
 
-___
+
 * secrets management solution - what is a secret?
 * Single source of secerts
 * Provides Lifecycle Management for Secrets
@@ -56,14 +57,53 @@ ___
 
 
 ## Secret Engines
-* Perform authentication and assign policy to the token
-* Humans vs Machines Auth methods
+* Secrets engines are Vault components which store, generate or encrypt secrets
+* KV store, dynamic creds, Encryption as service
+* Secret engines are plugins that need to be enabled
 * Token auth method is already enabled
-* Types of auth method
+* Types of secrets engines
     1. Ldap
-    2. Approle
+    2. Databases
+    3. KV engine
+
+## Demo for `vault secrets engine - LDAP`  
+### Enable engine"
+
+    vault secrets enable ldap
+
+### Configure Engine"
+
+    vault write ldap/config \
+    binddn=cn=admin,dc=learn,dc=example \
+    bindpass=2LearnVault \
+    url=ldap://20.120.122.167
+   
 
 
+### Vault the account"
+
+    vault write ldap/static-role/learn \
+    dn='cn=alice,ou=users,dc=learn,dc=example' \
+    username='alice' \
+    rotation_period="600s"
+
+### Read the password"
+
+    vault read ldap/static-cred/learn
+
+
+### Check that the pasword is working:
+
+    vault write auth/approle/login     role_id=<your_role_id>     secret_id=<your_secret_id>
+
+
+## Vault Policies
+* Policies provide a declarative way to grant or forbid access to certain paths and operations in Vault
+* Policies are deny by default, so an empty policy grants no permission in the system
+* Secret engines are plugins that need to be enabled
+* Token auth method is already enabled  
+
+![Pollicyworkflow](https://developer.hashicorp.com/_next/image?url=https%3A%2F%2Fcontent.hashicorp.com%2Fapi%2Fassets%3Fproduct%3Dvault%26version%3Drefs%252Fheads%252Frelease%252F1.15.x%26asset%3Dwebsite%252Fpublic%252Fimg%252Fvault-policy-workflow.svg%26width%3D669%26height%3D497&w=1920&q=75)
 ## labs
 
 ## questions
