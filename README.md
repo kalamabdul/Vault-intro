@@ -107,7 +107,7 @@ Dont let me alone. Ask questions, keep interactive.
 
 ![Pollicyworkflow](https://developer.hashicorp.com/_next/image?url=https%3A%2F%2Fcontent.hashicorp.com%2Fapi%2Fassets%3Fproduct%3Dvault%26version%3Drefs%252Fheads%252Frelease%252F1.15.x%26asset%3Dwebsite%252Fpublic%252Fimg%252Fvault-policy-workflow.svg%26width%3D669%26height%3D497&w=1920&q=75)
 
-![a]("https://media.giphy.com/media/H6cmWzp6LGFvqjidB7/giphy.gif">)
+![a](https://media.giphy.com/media/H6cmWzp6LGFvqjidB7/giphy.gif)
 ## labs
 
 ## questions
