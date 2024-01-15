@@ -11,7 +11,7 @@
 2. Approle
 
 ## Demo for `vault auth`  
-Approle"
+### Enable Approle"
 
     cd ~
     ls -l
