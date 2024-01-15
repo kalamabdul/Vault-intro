@@ -35,7 +35,6 @@ Dont let me alone. Ask questions, keep interactive.
     vault write auth/approle/role/my-role \
     token_ttl=1h \
     token_max_ttl=1h \
-    token_max_ttl=1h \
     secret_id_ttl=1h \
     secret_id_num_uses=5 \
     token_policies=kv-read-policy
