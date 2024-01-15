@@ -6,15 +6,20 @@
 * Single source of secerts
 * Provides Lifecycle Management for Secrets
 
+![Demo](https://developer.hashicorp.com/_next/image?url=https%3A%2F%2Fcontent.hashicorp.com%2Fapi%2Fassets%3Fproduct%3Dvault%26version%3Drefs%252Fheads%252Frelease%252F1.15.x%26asset%3Dwebsite%252Fpublic%252Fimg%252Fhow-vault-works.png%26width%3D2077%26height%3D1343&w=3840&q=75)
+
 ## Auth methods
-1. Ldap
-2. Approle
+* Perform authentication and assign policy to the token
+* Humans vs Machines Auth methods
+* Token auth method is already enabled
+* Types of auth method
+    1. Ldap
+    2. Approle
 
 ## Demo for `vault auth`  
 ### Enable Approle"
 
     vault auth enable approle
-    l
 
 ### Configure approle"
 
@@ -30,28 +35,27 @@
 ### Fetch the role id from the approle"
 
     vault read auth/approle/role/my-role/role-id
-    l
 
 ### Fetch the role id from the approle"
 
     vault read auth/approle/role/my-role/role-id
-    l
+
 ### Get a SecretID issued against the approle:
 
     vault write -f auth/approle/role/my-role/secret-id
-    l
 
 ### Check that the approle authentication is configured properly:
 
     vault write auth/approle/login     role_id=<your_role_id>     secret_id=<your_secret_id>
 
-    
+
 ## Secret Engines
-1. LDAP
-2. DB engines  
-   * mysql
-   * oracle
-3. 
+* Perform authentication and assign policy to the token
+* Humans vs Machines Auth methods
+* Token auth method is already enabled
+* Types of auth method
+    1. Ldap
+    2. Approle
 
 
 ## labs
