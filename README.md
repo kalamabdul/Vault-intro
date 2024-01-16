@@ -139,6 +139,10 @@
 
     vault policy write app-read app-read.hcl
 
+## Getting started with Vault
+
+    vault server -dev
+
 
 ## questions
 
