@@ -1,5 +1,13 @@
 # Vault-intro
 
+## VPM
+
+* VPM creates primarily below Vault resources
+    1. Ldap auth method
+    2. Approle Auth method
+    3. Ldap secrets engine
+    4. Policies
+
 ## What is Vault  
 
 
@@ -28,26 +36,31 @@
 
 ### *Configure Approle*
 
-    vault write auth/approle/role/my-role \
+    vault write auth/approle/role/12345-application \
     token_ttl=1h \
     token_max_ttl=1h \
     secret_id_ttl=1h \
     secret_id_num_uses=5 \
     token_policies=app-read
 
+### *Update Approle role ID to a custom value*
+
+    vault write auth/approle/role/12345-application \
+    role_id=ZS12345
+
 
 ### *Fetch the role id from the approle*
 
-    vault read auth/approle/role/my-role/role-id
+    vault read auth/approle/role/12345-application/role-id
 
 
 ### *Get a SecretID issued against the approle*
 
-    vault write -f auth/approle/role/my-role/secret-id
+    vault write -f auth/approle/role/12345-application/secret-id
 
 ### *Check that the approle authentication is configured properly*
 
-    vault write auth/approle/login     role_id=<your_role_id>     secret_id=<your_secret_id>
+    vault write auth/approle/login     role_id=ZS12345     secret_id=<your_secret_id>
 
 
 ## Secret Engines
