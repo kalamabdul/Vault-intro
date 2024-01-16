@@ -1,9 +1,5 @@
 # Vault-intro
-Dont let me alone. Ask questions, keep interactive.
 
-<img src="https://media.giphy.com/media/H6cmWzp6LGFvqjidB7/giphy.gif">
-
-![a](https://media.giphy.com/media/H6cmWzp6LGFvqjidB7/giphy.gif)
 ## what is vault  
 
 
@@ -44,9 +40,6 @@ Dont let me alone. Ask questions, keep interactive.
 
     vault read auth/approle/role/my-role/role-id
 
-### Fetch the role id from the approle"
-
-    vault read auth/approle/role/my-role/role-id
 
 ### Get a SecretID issued against the approle:
 
@@ -133,7 +126,6 @@ Dont let me alone. Ask questions, keep interactive.
 
     vault policy write app-read app-read.hcl
 
-## labs
 
 ## questions
 
