@@ -1,9 +1,9 @@
 # Vault-intro
 
-## what is vault  
+## What is Vault  
 
 
-* secrets management solution - what is a secret?
+* Secrets management solution - what is a secret?
 * Single source of secerts
 * Provides Lifecycle Management for Secrets
 
@@ -21,12 +21,12 @@
     1. Approle
     2. LDAP
 
-## Demo for `vault auth method Approle`  
+## Demo for `vault auth method -  Approle`  
 ### *Enable Approle*
 
     vault auth enable approle
 
-### Configure Approle"
+### *Configure Approle*
 
     vault write auth/approle/role/my-role \
     token_ttl=1h \
@@ -36,16 +36,16 @@
     token_policies=app-read
 
 
-### Fetch the role id from the approle"
+### *Fetch the role id from the approle*
 
     vault read auth/approle/role/my-role/role-id
 
 
-### Get a SecretID issued against the approle:
+### *Get a SecretID issued against the approle*
 
     vault write -f auth/approle/role/my-role/secret-id
 
-### Check that the approle authentication is configured properly:
+### *Check that the approle authentication is configured properly*
 
     vault write auth/approle/login     role_id=<your_role_id>     secret_id=<your_secret_id>
 
@@ -60,11 +60,11 @@
     3. KV engine
 
 ## Demo for `vault secrets engine - KV`  
-### Enable engine
+### *Enable engine*
 
     vault secrets enable -path=kv-v2 kv-v2
 
-### Add Static secrets
+### *Add Static secrets*
 
     vault kv put kv-v2/secret1 password=supersecret
     vault kv put kv-v2/secret2 password=supersecret2
