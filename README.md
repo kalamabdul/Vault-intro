@@ -65,8 +65,8 @@
 
 ## Secret Engines
 * Secrets engines are Vault components which store, generate or encrypt secrets
-* KV store, dynamic creds, Encryption as service
-* Secret engines are plugins that need to be enabled
+* Types of Engines - KV store, dynamic creds, Encryption as service
+* Secret engines are plugins that need to be enabled, Community, Custom etc
 * Types of secrets engines
     1. Ldap
     2. Databases
@@ -96,7 +96,7 @@
 
     vault write ldap/config \
     binddn=cn=admin,dc=learn,dc=example \
-    bindpass=2LearnVault \
+    bindpass= \
     url=ldap://4.157.222.221
    
 
