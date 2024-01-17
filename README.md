@@ -40,13 +40,6 @@
 * Application, Automation, Manager (LDAP)  
 
 
-    vault write auth/approle/role/12345-application \
-    token_ttl=14400 \ 
-    token_max_ttl=14400 \
-    secret_id_ttl=15552000 \
-    token_policies=app-read
-
-### *Update Approle role ID to a custom value*
 
     vault write auth/approle/role/12345-application \
     token_ttl=14400 \ 
