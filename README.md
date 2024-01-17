@@ -35,17 +35,16 @@
     vault auth enable approle
 
 ### *Configure Approle*
-* TTL default to 4 hours
-* secret_id ttl default to 180 days
-* Application, Automation, Manager (LDAP)  
-
-
 
     vault write auth/approle/role/12345-application \
     token_ttl=14400 \ 
     token_max_ttl=14400 \
     secret_id_ttl=15552000 \
     token_policies=app-read 
+
+* TTL default to 4 hours
+* secret_id ttl default to 180 days
+* Application, Automation, Manager (LDAP)
 
 ### *Update Approle role ID to a custom value*
 
@@ -96,40 +95,46 @@
 
     vault secrets enable ldap
 
+### Create password policy
+
+    vault write sys/policies/password/ldap policy=@password_policy.hcl
+
+
 ### Configure Engine
 
     vault write ldap/config \
     binddn=cn=admin,dc=learn,dc=example \
+    password_policy=ldap
     bindpass= \
     url=ldap://4.157.222.221
    
 
 
-### Vault the account "alice"
+### Vault the account "serviceaccount1"
 
-    vault write ldap/static-role/learn \
-    dn='cn=alice,ou=users,dc=learn,dc=example' \
-    username='alice' \
+    vault write ldap/static-role/12345-serviceaccount1 \
+    dn='cn=serviceaccount1,ou=users,dc=learn,dc=example' \
+    username='serviceaccount1' \
     rotation_period="600s"
 
 
-### Vault the account "alice2"
+### Vault the account "serviceaccount2"
 
-    vault write ldap/static-role/learn2 \
-    dn='cn=alice2,ou=users,dc=learn,dc=example' \
+    vault write ldap/static-role/12345-serviceaccount2 \
+    dn='cn=serviceaccount2,ou=users,dc=learn,dc=example' \
     username='alice2' \
     rotation_period="600s"
 
 ### Read the password
 
-    vault read ldap/static-cred/learn
+    vault read ldap/static-cred/12345-serviceaccount1
 
 
 ### Check that the pasword is working
 
     ldapsearch -b "cn=johnny,dc=learn,dc=example" \
-    -D 'cn=alice,ou=users,dc=learn,dc=example' -h 4.157.222.221:389 \
-    -w
+    -D 'cn=serviceaccount1,ou=users,dc=learn,dc=example' -h 4.157.222.221:389 \
+    -w 
 
 
 ## Vault Policies
