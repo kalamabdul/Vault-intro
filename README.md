@@ -74,7 +74,7 @@
 ### *Configure LDAP*
 
     vault write auth/ldap/config \
-    url="ldap://20.102.13.234" \
+    url="ldap://20.237.38.22" \
     userdn="ou=users,dc=learn,dc=example" \
     userattr="cn" \
     groupdn="ou=groups,dc=learn,dc=example" \
@@ -90,7 +90,7 @@
 
 ### *LDAP group -> policy mapping*
 
-     vault write auth/ldap/groups/dev policies=dev-read
+     vault write auth/ldap/groups/aitmanager policies=aitmanager
      vault write auth/ldap/groups/vaultadmin policies=vaultadmin
 
 ### *login*
@@ -100,7 +100,7 @@
 
 | User     |  Groups       | Policies
 | -------- | -------       | -------
-| Alice    | Dev           | ait-manager
+| Alice    | aitmanager          | aitmanager
 | Kalam    | VaultAdmin    | vaultadmin
 
 ## Secret Engines
