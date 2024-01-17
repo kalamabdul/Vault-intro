@@ -35,9 +35,9 @@
     vault auth enable approle
 
 ### *Configure Approle*
-#### TTL default to 4 hours
-#### secret_id ttl default to 180 days
-#### Application, Automation, Manager (LDAP)
+* TTL default to 4 hours
+* secret_id ttl default to 180 days
+* Application, Automation, Manager (LDAP)
 
     vault write auth/approle/role/12345-application \
     token_ttl=14400 \ 
