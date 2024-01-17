@@ -98,10 +98,10 @@
     vault login -method=ldap username=alice
 ### *UsersandGroups*
 
-| User     |  Groups |
-| -------- | ------- |
-| Alice    | Dev   |
-| Kalam    | VaultAdmin    |
+| User     |  Groups       | Policies
+| -------- | -------       | -------
+| Alice    | Dev           | ait-manager
+| Kalam    | VaultAdmin    | vaultadmin
 
 ## Secret Engines
 * Secrets engines are Vault components which store, generate or encrypt secrets
