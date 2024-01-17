@@ -40,7 +40,7 @@
     token_ttl=14400 \ 
     token_max_ttl=14400 \
     secret_id_ttl=15552000 \
-    token_policies=app-read 
+    token_policies=12345-application 
 
 * TTL default to 4 hours
 * secret_id ttl default to 180 days
@@ -66,6 +66,43 @@
     vault write auth/approle/login     role_id=ZS12345     secret_id=<your_secret_id>
 
 
+## Demo for `vault auth method -  LDAP`  
+### *Enable ldap*
+
+    vault auth enable ldap
+
+### *Configure LDAP*
+
+    vault write auth/ldap/config \
+    url="ldap://20.102.13.234" \
+    userdn="ou=users,dc=learn,dc=example" \
+    userattr="cn" \
+    groupdn="ou=groups,dc=learn,dc=example" \
+    groupattr="cn" \
+    insecure_tls=true \
+    starttls=false \
+    binddn="cn=admin,dc=learn,dc=example" \
+    bindpass="" 
+
+* TTL default to 4 hours
+* secret_id ttl default to 180 days
+* Humans (LDAP)
+
+### *LDAP group -> policy mapping*
+
+     vault write auth/ldap/groups/dev policies=dev-read
+     vault write auth/ldap/groups/vaultadmin policies=vaultadmin
+
+### *login*
+
+    vault login -method=ldap username=alice
+### *UsersandGroups*
+
+| User     |  Groups |
+| -------- | ------- |
+| Alice    | Dev   |
+| Kalam    | VaultAdmin    |
+
 ## Secret Engines
 * Secrets engines are Vault components which store, generate or encrypt secrets
 * Types of Engines - KV store, dynamic creds, Encryption as service
@@ -78,17 +115,17 @@
 ## Demo for `vault secrets engine - KV`  
 ### *Enable engine*
 
-    vault secrets enable -path=kv-v2 kv-v2
+    vault secrets enable -path=secrets/kv kv-v2
 
 ### *Add Static secrets*
 
-    vault kv put kv-v2/secret1 password=supersecret
-    vault kv put kv-v2/secret2 password=supersecret2
+    vault kv put secrets/kv/ait-12345 password=supersecret
+    vault kv put secrets/kv/ait-56789 password=supersecret2
 
 ### Read Static secrets
 
-    vault kv get kv-v2/secret1
-    vault kv get kv-v2/secret2
+    vault kv get secrets/kv/ait-12345
+    vault kv get secrets/kv/ait-56789
 
 ## Demo for `vault secrets engine - LDAP`  
 ### Enable engine
@@ -104,7 +141,7 @@
 
     vault write ldap/config \
     binddn=cn=admin,dc=learn,dc=example \
-    password_policy=ldap
+    password_policy=ldap \
     bindpass= \
     url=ldap://4.157.222.221
    
@@ -146,7 +183,7 @@
 ## Demo for `vault policy`  
 ### Create Policy
 
-    vault policy write app-read app-read.hcl
+    vault policy write 12345-application 12345-application.hcl
 
 ## Getting started with Vault
 
