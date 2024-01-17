@@ -1,4 +1,5 @@
 # Vault-intro
+* `Note: This training is tailored to a specific audience.`
 
 ## VPM
 
@@ -11,7 +12,7 @@
 ## What is Vault  
 
 
-* Secrets management solution - what is a secret?
+* Secrets management solution and much more - what is a secret?
 * Single source of secerts
 * Provides Lifecycle Management for Secrets
 
