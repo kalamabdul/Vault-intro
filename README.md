@@ -34,11 +34,17 @@
 
     vault auth enable approle
 
-#### *Configure Approle without policy*
+#### *Configure application role (AIT 12345) without policy*
 
     vault write auth/approle/role/12345-application \
     token_ttl=14400  token_max_ttl=14400  secret_id_ttl=15552000 \
     role_id=ZS12345
+
+#### *Configure automation role (AIT 12345) without policy*
+
+    vault write auth/approle/role/12345-automation \
+    token_ttl=14400  token_max_ttl=14400  secret_id_ttl=15552000 \
+    token_policies=12345-automation role_id=ZS56789
 
 #### *Configure Approle with policy*
 
