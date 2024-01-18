@@ -44,11 +44,6 @@
 * secret_id ttl default to 180 days
 * Application, Automation, Manager (LDAP)
 
-### *Update Approle role ID to a custom value*
-
-    vault write auth/approle/role/12345-application \
-    role_id=ZS12345
-
 
 ### *Fetch the role id from the approle*
 
