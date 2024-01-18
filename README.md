@@ -35,13 +35,13 @@
 
     vault auth enable approle
 
-### *Configure Approle without policy*
+#### *Configure Approle without policy*
 
     vault write auth/approle/role/12345-application \
     token_ttl=14400  token_max_ttl=14400  secret_id_ttl=15552000 \
     role_id=ZS12345
 
-### *Configure Approle with policy*
+#### *Configure Approle with policy*
 
     vault write auth/approle/role/12345-application \
     token_ttl=14400  token_max_ttl=14400  secret_id_ttl=15552000 \
@@ -54,26 +54,26 @@
 * Application, Automation, Manager (LDAP)
 
 
-### *Fetch the role id from the approle*
+#### *Fetch the role id from the approle*
 
     vault read auth/approle/role/12345-application/role-id
 
 
-### *Get a SecretID issued against the approle*
+#### *Get a SecretID issued against the approle*
 
     vault write -f auth/approle/role/12345-application/secret-id
 
-### *Check that the approle authentication is configured properly*
+#### *Check that the approle authentication is configured properly*
 
     vault write auth/approle/login     role_id=ZS12345     secret_id=
 
 
 ## Demo for `vault auth method -  LDAP`  
-### *Enable ldap*
+#### *Enable ldap*
 
     vault auth enable ldap
 
-### *Configure LDAP*
+#### *Configure LDAP*
 
     vault write auth/ldap/config \
     url="ldap://20.237.38.22" \
@@ -90,15 +90,15 @@
 * secret_id ttl default to 180 days
 * Humans (LDAP)
 
-### *LDAP group -> policy mapping*
+#### *LDAP group -> policy mapping*
 
      vault write auth/ldap/groups/aitmanager policies=aitmanager
      vault write auth/ldap/groups/vaultadmin policies=vaultadmin
 
-### *login*
+#### *login*
 
     vault login -method=ldap username=alice
-### *UsersandGroups*
+#### *UsersandGroups*
 
 | User     |  Groups       | Policies
 | -------- | -------       | -------
@@ -115,31 +115,31 @@
     3. KV engine
 
 ## Demo for `vault secrets engine - KV`  
-### *Enable engine*
+#### *Enable engine*
 
     vault secrets enable -path=secrets/kv kv-v2
 
-### *Add Static secrets*
+#### *Add Static secrets*
 
      vault kv put -mount=secrets/kv/ ait-12345/db password=supersecret
      vault kv put -mount=secrets/kv/ ait-56789/db password=supersecret
 
-### Read Static secrets
+#### Read Static secrets
 
     vault kv get -mount=secrets/kv/ ait-12345/db
     vault kv get -mount=secrets/kv/ ait-56789/db
 
 ## Demo for `vault secrets engine - LDAP`  
-### Enable engine
+#### Enable engine
 
     vault secrets enable ldap
 
-### Create password policy
+#### Create password policy
 
     vault write sys/policies/password/ldap policy=@password_policy.hcl
 
 
-### Configure Engine
+#### Configure Engine
 
     vault write ldap/config \
     binddn=cn=admin,dc=learn,dc=example \
@@ -149,7 +149,7 @@
    
 
 
-### Vault the account "serviceaccount1"
+#### Vault the account "serviceaccount1"
 
     vault write ldap/static-role/12345-serviceaccount1 \
     dn='cn=serviceaccount1,ou=users,dc=learn,dc=example' \
@@ -157,19 +157,19 @@
     rotation_period="600s"
 
 
-### Vault the account "serviceaccount2"
+#### Vault the account "serviceaccount2"
 
     vault write ldap/static-role/12345-serviceaccount2 \
     dn='cn=serviceaccount2,ou=users,dc=learn,dc=example' \
     username='alice2' \
     rotation_period="600s"
 
-### Read the password
+#### Read the password
 
     vault read ldap/static-cred/12345-serviceaccount1
 
 
-### Check that the pasword is working
+#### Check that the pasword is working
 
     ldapsearch -b "cn=johnny,dc=learn,dc=example" \
     -D 'cn=serviceaccount1,ou=users,dc=learn,dc=example' -h 4.157.222.221:389 \
@@ -183,7 +183,7 @@
 ![Pollicyworkflow](https://developer.hashicorp.com/_next/image?url=https%3A%2F%2Fcontent.hashicorp.com%2Fapi%2Fassets%3Fproduct%3Dvault%26version%3Drefs%252Fheads%252Frelease%252F1.15.x%26asset%3Dwebsite%252Fpublic%252Fimg%252Fvault-policy-workflow.svg%26width%3D669%26height%3D497&w=1920&q=75)
 
 ## Demo for `vault policy`  
-### Create Policy
+#### Create Policy
 
     vault policy write 12345-application 12345-application.hcl
 
