@@ -13,7 +13,6 @@
 
 
 * Secrets management solution and much more - what is a secret?
-* Single source of secerts
 * Provides Lifecycle Management for Secrets
 
 ![Demo](https://developer.hashicorp.com/_next/image?url=https%3A%2F%2Fcontent.hashicorp.com%2Fapi%2Fassets%3Fproduct%3Dvault%26version%3Drefs%252Fheads%252Frelease%252F1.15.x%26asset%3Dwebsite%252Fpublic%252Fimg%252Fhow-vault-works.png%26width%3D2077%26height%3D1343&w=3840&q=75)
