@@ -121,13 +121,13 @@
 
 ### *Add Static secrets*
 
-    vault kv put secrets/kv/ait-12345 password=supersecret
-    vault kv put secrets/kv/ait-56789 password=supersecret2
+     vault kv put -mount=secrets/kv/ ait-12345/db password=supersecret
+     vault kv put -mount=secrets/kv/ ait-56789/db password=supersecret
 
 ### Read Static secrets
 
-    vault kv get secrets/kv/ait-12345
-    vault kv get secrets/kv/ait-56789
+    vault kv get -mount=secrets/kv/ ait-12345/db
+    vault kv get -mount=secrets/kv/ ait-56789/db
 
 ## Demo for `vault secrets engine - LDAP`  
 ### Enable engine
