@@ -50,7 +50,6 @@ jobs:
           url: https://vault.kalamabdul.com:8200
           role: demo
           method: jwt
-          jwtGithubAudience: gha-medium
           exportEnv: true
           secrets: |
                 secret/data/apikeys foo | AWS_ACCESS_KEY_ID ;
