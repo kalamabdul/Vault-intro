@@ -52,4 +52,4 @@ jobs:
           method: jwt
           secrets: |
                 secret/data/apikeys foo | AWS_ACCESS_KEY_ID ;
-                secret/data/apikeys | AWS_SECRET_ACCESS_KEY
+                secret/data/apikeys zip | AWS_SECRET_ACCESS_KEY
