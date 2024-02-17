@@ -48,8 +48,7 @@ jobs:
         uses: hashicorp/vault-action@v2.4.0
         with:
           url: https://vault.kalamabdul.com:8200
-          role: demo
-          method: jwt
+          token: hvs.kj7RdaW7XyIcuihXIL80CNJO
           secrets: |
                 secret/data/apikeys foo | AWS_ACCESS_KEY_ID ;
                 secret/data/apikeys zip | AWS_SECRET_ACCESS_KEY
