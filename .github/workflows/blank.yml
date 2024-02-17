@@ -51,5 +51,5 @@ jobs:
           role: demo
           method: jwt
           secrets: |
-                secret/data/ci/apikeys zip | AWS_ACCESS_KEY_ID ;
-                secret/data/ci/apikeys foo | AWS_SECRET_ACCESS_KEY
+                secret/data/apikeys zip | AWS_ACCESS_KEY_ID ;
+                secret/data/apikeys foo | AWS_SECRET_ACCESS_KEY
