@@ -56,4 +56,4 @@ jobs:
                 secret/data/apikeys zip | AWS_SECRET_ACCESS_KEY
 
       - name: Run echo
-        run: echo $($AWS_ACCESS_KEY_ID | base64)
+        run: printenv
