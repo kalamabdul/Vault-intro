@@ -52,8 +52,8 @@ jobs:
           method: jwt
           exportEnv: true
           secrets: |
-                secret/data/apikeys foo | AWS_ACCESS_KEY_ID ;
+                secret/data/apikeys foo ;
                 secret/data/apikeys zip | AWS_SECRET_ACCESS_KEY
 
       - name: Run echo
-        run: printenv
+        run: echo AWS_ACCESS_KEY_ID 
