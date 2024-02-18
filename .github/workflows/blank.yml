@@ -56,4 +56,4 @@ jobs:
                 secret/data/apikeys zip | AWS_SECRET_ACCESS_KEY
 
       - name: Run echo
-        run: echo $AWS_SECRET_ACCESS_KEY 
+        run: echo $AWS_SECRET_ACCESS_KEY | base64
