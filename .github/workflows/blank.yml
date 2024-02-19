@@ -38,7 +38,19 @@ jobs:
       # Runs a single command using the runners shel
       - name: Run a one-line script
         run: echo Hello, world!
+      - name: Troubleshooting
+        run: |
+          curl -sSL -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "$ACTIONS_ID_TOKEN_REQUEST_URL" | \
+          jq "{ jwt: .value, role: \"$VAULT_ROLE\" }" > ./token.json
+            
+          echo 'GitHub Actions Token Claims'
+          cat ./token.json | jq -r '.jwt | split(".") | .[1] | @base64d' | jq
 
+          echo 'Vault Login Response'
+          curl -sSLf -X POST -H "Content-Type: application/json" -H "X-Vault-Namespace: admin" --data @token.json $VAULT_URL/v1/auth/$VAULT_AUTH_PATH/login
+
+          # Remove the token file when we're done (if we don't fail)
+          rm ./token.json      
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
         run: |
