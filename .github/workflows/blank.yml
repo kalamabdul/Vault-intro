@@ -60,7 +60,7 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
-      - name: Import Secrets
+      - name: Retrieve Secrets
         uses: hashicorp/vault-action@v2.4.0
         with:
           url: https://vault.kalamabdul.com:8200
@@ -68,8 +68,9 @@ jobs:
           method: jwt
           exportEnv: true
           secrets: |
-                secret/data/apikeys foo ;
+                secret/data/apikeys foo | MY_SECRET ;
                 secret/data/apikeys zip | AWS_SECRET_ACCESS_KEY
 
-      - name: Run echo
-        run: echo (AWS_SECRET_ACCESS_KEY | base64)
+      - name: Print Secrets
+        run: |
+          echo '${{ steps.secretdata.outputs.MY_SECRET }}'
