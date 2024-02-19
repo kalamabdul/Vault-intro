@@ -12,11 +12,12 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Import Secrets
-        uses: hashicorp/vault-action@v2
+        id: secretdata
+        uses: hashicorp/vault-action@v2.4.0
         with:
-          url: http://127.0.0.1:8200
-          tlsSkipVerify: true
-          token: ${{ secrets.VAULT_TOKEN }}
+          url: https://vault.kalamabdul.com:8200
+          role: demo
+          method: jwt
           secrets: |
             secret/data/ci app_secret
       - name: Build Docker Image
