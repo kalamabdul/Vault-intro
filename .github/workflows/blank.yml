@@ -28,16 +28,13 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
-      - name: Say it
-        run: echo "Hello World"
       - name: perform token run
         run: | 
          echo $(curl -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "$ACTIONS_ID_TOKEN_REQUEST_URL&audience=gha-medium" | base64)
 
 
       # Runs a single command using the runners shel
-      - name: Run a one-line script
-        run: echo Hello, world!
+
       - name: Troubleshooting
         run: |
           curl -sSL -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "$ACTIONS_ID_TOKEN_REQUEST_URL" | \
@@ -56,10 +53,6 @@ jobs:
          VAULT_AUTH_PATH: jwt
          VAULT_ROLE: demo      
       # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
       - name: Retrieve Secrets
         id: secretdata
         uses: hashicorp/vault-action@v2.4.0
