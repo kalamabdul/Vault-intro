@@ -15,7 +15,7 @@ jobs:
         id: secretdata
         uses: hashicorp/vault-action@v2.4.0
         with:
-          url: https://vault.kalamabdul.com:8200
+          url: https://127.0.0.1:8200
           role: demo
           method: jwt
           secrets: |
