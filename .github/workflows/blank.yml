@@ -49,7 +49,7 @@ jobs:
           # Remove the token file when we're done (if we don't fail)
           rm ./token.json
         env:
-         VAULT_URL: https://vault.kalamabdul.com:8200
+         VAULT_URL: http://127.0.0.1:8200
          VAULT_AUTH_PATH: jwt
          VAULT_ROLE: demo      
       # Runs a set of commands using the runners shell
@@ -57,7 +57,7 @@ jobs:
         id: secretdata
         uses: hashicorp/vault-action@v2.4.0
         with:
-          url: https://vault.kalamabdul.com:8200
+          url: http://127.0.0.1:8200
           role: demo
           method: jwt
           secrets: |
