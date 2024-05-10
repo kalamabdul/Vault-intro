@@ -4,7 +4,7 @@ on: push
 jobs:
   build:
     # The type of runner that the job will run on
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     name: Vault-github integration
     permissions:
         contents: read
@@ -15,9 +15,10 @@ jobs:
         id: secretdata
         uses: hashicorp/vault-action@v2.4.0
         with:
-          url: http://127.0.0.1:8200
+          url: https://vault-public-vault-22deb760.8ee49bbe.z1.hashicorp.cloud:8200
           role: demo
           method: jwt
+          namespace: admin
           secrets: |
             secrets/data/ci app_secret
       - name: Build Docker Image
