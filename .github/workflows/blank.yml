@@ -50,7 +50,7 @@ jobs:
           rm ./token.json
         env:
          VAULT_URL: https://vault-public-vault-22deb760.8ee49bbe.z1.hashicorp.cloud:8200
-         VAULT_AUTH_PATH: githubjwt
+         VAULT_AUTH_PATH: jwt
          VAULT_ROLE: demo
          VAULT_NAMESPACE: admin      
       # Runs a set of commands using the runners shell
