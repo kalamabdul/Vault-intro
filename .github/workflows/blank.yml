@@ -60,7 +60,7 @@ jobs:
         with:
           url: https://vault-public-vault-22deb760.8ee49bbe.z1.hashicorp.cloud:8200
           role: demo
-          method: githubjwt
+          method: jwt
           secrets: |
                 secrets/data/ci app_secret | MY_SECRET ;
 
