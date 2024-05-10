@@ -7,3 +7,4 @@ path "ldap/static-cred/12345-serviceaccount1" {
 path "secrets/kv/data/ait-12345/*" {
   capabilities = ["read"]
 }
+
