@@ -1,7 +1,6 @@
 # ProgramEquity Vault Lab
 * `Note: This training is tailored to a specific audience.`
 
-## VPM
 
 * In this Lab we will create primarily below Vault resources
     1. JWT auth method
@@ -16,6 +15,40 @@
 * Provides Lifecycle Management for Secrets
 
 ![Demo](https://lucid.app/lucidchart/4ac5a865-b8f5-499f-a443-9f65d83533f1/view?page=0_0#)
+
+## Configure JWT Auth
+
+
+#### *Enable JWT Auth*
+
+    vault auth enable jwt
+
+#### *Configure Auth method*
+
+    vault write auth/jwt/config \
+    bound_issuer="https://token.actions.githubusercontent.com" \
+    oidc_discovery_url="https://token.actions.githubusercontent.com"
+
+#### *Configure automation role (AIT 12345) without policy*
+
+    vault write auth/jwt/role/demo -<<EOF
+{
+  "role_type": "jwt",
+  "user_claim": "workflow",
+  "bound_claims": {
+    "repository": "kalamabdul/Vault-intro"
+  },
+  "policies": ["app-policy"],
+  "ttl": "10m"
+}
+EOF
+
+
+#### *Configure Approle with policy*
+
+    vault write auth/approle/role/12345-application \
+    token_ttl=14400  token_max_ttl=14400  secret_id_ttl=15552000 \
+    token_policies=12345-application role_id=ZS12345
 
 ## How it works
 
