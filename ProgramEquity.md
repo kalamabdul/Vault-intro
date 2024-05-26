@@ -15,7 +15,7 @@
 * Secrets management solution and much more - what is a secret?
 * Provides Lifecycle Management for Secrets
 
-![Demo](https://lucid.app/documents/view/4ac5a865-b8f5-499f-a443-9f65d83533f1)
+![Demo](https://lucid.app/lucidchart/4ac5a865-b8f5-499f-a443-9f65d83533f1/view?page=0_0#)
 
 ## How it works
 
