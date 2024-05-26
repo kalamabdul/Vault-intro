@@ -32,16 +32,16 @@
 #### *Configure automation role (AIT 12345) without policy*
 
     vault write auth/jwt/role/demo -<<EOF
-{
-  "role_type": "jwt",
-  "user_claim": "workflow",
-  "bound_claims": {
-    "repository": "kalamabdul/Vault-intro"
-  },
-  "policies": ["app-policy"],
-  "ttl": "10m"
-}
-EOF
+    {
+     "role_type": "jwt",
+     "user_claim": "workflow",
+     "bound_claims": {
+     "repository": "kalamabdul/Vault-intro"
+    },
+    "policies": ["app-policy"],
+    "ttl": "10m"
+    }
+    EOF
 
 
 #### *Configure Approle with policy*
