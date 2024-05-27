@@ -17,7 +17,7 @@
 
 
 #### *Enable JWT Auth*
-   ## Enable the JWT auth method, and use write to apply the configuration to your Vault. For oidc_discovery_url and         bound_issuer parameters, use https://token.actions.githubusercontent.com. These parameters allow the Vault server to verify  the received JSON Web Tokens (JWT) during the authentication process.
+   * Enable the JWT auth method, and use write to apply the configuration to your Vault. For oidc_discovery_url and         bound_issuer parameters, use https://token.actions.githubusercontent.com. These parameters allow the Vault server to verify  the received JSON Web Tokens (JWT) during the authentication process.
 
 
 
@@ -29,7 +29,7 @@
     bound_issuer="https://token.actions.githubusercontent.com" \
     oidc_discovery_url="https://token.actions.githubusercontent.com"
 
-#### *Configure roles to group different policies together. If the authentication is successful, these policies are attached to the resulting Vault access token.*
+#### *Configure roles to group different policies together. If the authentication is successful, these policies are attached to the resulting Vault access token*
 
     vault write auth/jwt/role/demo -<<EOF
     {
@@ -88,3 +88,11 @@
     }
     EOF
 
+## Sample GitHub Pipeline
+
+        uses: hashicorp/vault-action@v2.4.0
+        with:
+          url: https://vault-public-vault-22deb760.8ee49bbe.z1.hashicorp.cloud:8200
+          role: demo
+          method: jwt
+          namespace: "yournamespace"
