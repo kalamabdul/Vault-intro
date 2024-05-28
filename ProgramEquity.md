@@ -57,7 +57,7 @@
 ## Demo for `vault secrets engine - KV`  
 #### *Enable engine*
 
-    vault secrets enable -path=secrets/kv kv-v2
+    vault secrets enable -path=secrets/hashi-corp-hackpod-test kv-v2
 
 #### *Add Static secrets*
 
@@ -82,7 +82,7 @@
     #### *Configure a policy that only grants access to the specific paths your workflows will use to retrieve secrets*
 
     tee app-policy.hcl <<EOF
-    path "secret/*"
+    path "secrets/hashi-corp-hackpod-test/*"
     {  
     capabilities = ["read"]
     }
