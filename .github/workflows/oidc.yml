@@ -30,6 +30,6 @@ jobs:
           # Remove the token file when we're done (if we don't fail)
           rm ./token.json
       env:
-        VAULT_URL: ${{ secrets.VAULT_ADDR }}
+        VAULT_URL: https://vault-public-vault-f1f69e08.be85a044.z1.hashicorp.cloud:8200
         VAULT_AUTH_PATH: jwt
         VAULT_ROLE: demo
