@@ -20,7 +20,7 @@ jobs:
     - name: Retrieve Secrets
       id: secretdata
       uses: hashicorp/vault-action@v2.4.0
-      with: ${{ secrets.VAULT_TOKEN }}
+      with:
         url: ${{ secrets.VAULT_ADDR }}
         namespace: ${{ secrets.VAULT_NAMESPACE }}
         token: ${{ secrets.VAULT_TOKEN }}
