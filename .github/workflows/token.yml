@@ -1,0 +1,35 @@
+name: OIDC Access Test
+
+on: push
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  read-secret:
+    runs-on: ubuntu-latest
+    steps:
+    # Checkout the repository to the GitHub Actions runner
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    # Shout out to Benjamin Pannell at Sierra Softworks for this
+    # https://sierrasoftworks.com/2021/12/20/vault-github-actions/#policies
+
+    - name: Retrieve Secrets
+      id: secretdata
+      uses: hashicorp/vault-action@v2.4.0
+      with: ${{ secrets.VAULT_TOKEN }}
+        url: ${{ secrets.VAULT_ADDR }}
+        namespace: ${{ secrets.VAULT_NAMESPACE }}
+        token: 
+        secrets: ${{ secrets.VAULT_SECRET_PATH }} ${{ secrets.VAULT_SECRET_KEY }} | MY_SECRET
+
+    - name: Print Secrets
+      run: |
+          echo '${{ steps.secretdata.outputs.MY_SECRET }}'
+    - name: Build Docker Image
+      run: docker build . --file Dockerfile --build-arg app_secret="${{ env.MY_SECRET }}" -t    vault-action-exampleapp
+    - name: read secret from container
+      run: docker run vault-action-exampleapp /bin/bash -c "cat ./app_secret" | sed 's/./& /g'

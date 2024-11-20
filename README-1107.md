@@ -60,7 +60,7 @@
 
 #### *Add Static secrets*
 
-     vault kv put -mount=secrets/kv/ app1/db password=supersecret
+     vault kv put -mount=secrets/kv/ app1/db SQL_USERNAME=sa SQL_PASSWORD=P(@)ssword11
      
 
 #### Read Static secrets
@@ -78,3 +78,7 @@
 
     vault policy write app1 app1.hcl
 
+
+
+export SQL_USERNAME=$(vault kv get --format=json -mount="secrets/kv" "app1/db" | jq .data.data.SQL_USERNAME | sed 's/"//g')
+export SQL_PASSWORD=$(vault kv get --format=json -mount="secrets/kv" "app1/db" | jq .data.data.SQL_PASSWORD | sed 's/"//g')
