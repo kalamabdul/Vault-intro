@@ -33,3 +33,16 @@ jobs:
         VAULT_URL: ${{ secrets.VAULT_ADDR }}
         VAULT_AUTH_PATH: jwt
         VAULT_ROLE: ${{ secrets.VAULT_ROLE }}
+    - name: Retrieve Secrets
+      id: secretdata
+      uses: hashicorp/vault-action@v2.4.0
+      with: 
+        method: jwt
+        url: ${{ secrets.VAULT_ADDR }}
+        namespace: ${{ secrets.VAULT_NAMESPACE }}
+        role: ${{ secrets.VAULT_ROLE }}
+        secrets: ${{ secrets.VAULT_SECRET_PATH }} ${{ secrets.VAULT_SECRET_KEY }} | MY_SECRET
+
+    - name: Print Secrets
+      run: |
+          echo '${{ steps.secretdata.outputs.MY_SECRET }}'
