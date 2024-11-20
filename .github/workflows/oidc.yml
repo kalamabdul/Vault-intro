@@ -1,4 +1,4 @@
-name: OIDC Access Test Auth
+name: Token Auth2
 
 on: push
 
@@ -16,20 +16,20 @@ jobs:
 
     # Shout out to Benjamin Pannell at Sierra Softworks for this
     # https://sierrasoftworks.com/2021/12/20/vault-github-actions/#policies
-    - name: Troubleshooting
+
+    - name: Retrieve Secrets
+      id: secretdata
+      uses: hashicorp/vault-action@v2.4.0
+      with: ${{ secrets.VAULT_TOKEN }}
+        url: ${{ secrets.VAULT_ADDR }}
+        namespace: ${{ secrets.VAULT_NAMESPACE }}
+        token: ${{ secrets.VAULT_TOKEN }}
+        secrets: ${{ secrets.VAULT_SECRET_PATH }} ${{ secrets.VAULT_SECRET_KEY }} | MY_SECRET
+
+    - name: Print Secrets
       run: |
-          curl -sSL -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "$ACTIONS_ID_TOKEN_REQUEST_URL" | \
-          jq "{ jwt: .value, role: \"$VAULT_ROLE\" }" > ./token.json
-            
-          echo 'GitHub Actions Token Claims'
-          cat ./token.json | jq -r '.jwt | split(".") | .[1] | @base64d' | jq
-
-          echo 'Vault Login Response'
-          curl -sSLf -X POST -H "Content-Type: application/json" -H "X-Vault-Namespace:" --data @token.json $VAULT_URL/v1/auth/$VAULT_AUTH_PATH/login
-
-          # Remove the token file when we're done (if we don't fail)
-          rm ./token.json
-      env:
-        VAULT_URL: https://vault.kalamabdul.com:8200
-        VAULT_AUTH_PATH: jwt
-        VAULT_ROLE: demo
+          echo '${{ steps.secretdata.outputs.MY_SECRET }}'
+    - name: Build Docker Image
+      run: docker build . --file Dockerfile --build-arg app_secret="${{ env.MY_SECRET }}" -t    vault-action-exampleapp
+    - name: read secret from container
+      run: docker run vault-action-exampleapp /bin/bash -c "cat ./app_secret" | sed 's/./& /g'
