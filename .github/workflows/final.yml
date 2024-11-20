@@ -25,7 +25,7 @@ jobs:
           cat ./token.json | jq -r '.jwt | split(".") | .[1] | @base64d' | jq
 
           echo 'Vault Login Response'
-          curl -sSLf -X POST -H "Content-Type: application/json" -H "X-Vault-Namespace: admin" --data @token.json $VAULT_URL/v1/auth/$VAULT_AUTH_PATH/login
+          curl -sSLf -X POST -H "Content-Type: application/json" -H "X-Vault-Namespace: admin\kalam-test" --data @token.json $VAULT_URL/v1/auth/$VAULT_AUTH_PATH/login
 
           # Remove the token file when we're done (if we don't fail)
           rm ./token.json
@@ -33,17 +33,3 @@ jobs:
         VAULT_URL: ${{ secrets.VAULT_ADDR }}
         VAULT_AUTH_PATH: jwt
         VAULT_ROLE: ${{ secrets.VAULT_ROLE }}
-
-    - name: Retrieve Secrets
-      id: secretdata
-      uses: hashicorp/vault-action@v2.4.0
-      with: 
-        method: jwt
-        url: ${{ secrets.VAULT_ADDR }}
-        namespace: ${{ secrets.VAULT_NAMESPACE }}
-        role: ${{ secrets.VAULT_ROLE }}
-        secrets: ${{ secrets.VAULT_SECRET_PATH }} ${{ secrets.VAULT_SECRET_KEY }} | MY_SECRET
-
-    - name: Print Secrets
-      run: |
-          echo '${{ steps.secretdata.outputs.MY_SECRET }}'
