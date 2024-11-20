@@ -51,7 +51,7 @@ jobs:
         env:
          VAULT_URL: https://vault-public-vault-f1f69e08.be85a044.z1.hashicorp.cloud:8200
          VAULT_AUTH_PATH: jwt
-         VAULT_ROLE: demo1
+         VAULT_ROLE: demo
          VAULT_NAMESPACE: admin/kalam-test      
       # Runs a set of commands using the runners shell
       - name: Retrieve Secrets
@@ -61,7 +61,7 @@ jobs:
           url: https://vault-public-vault-f1f69e08.be85a044.z1.hashicorp.cloud:8200
           role: demo
           method: jwt
-          namespace: admin
+          namespace: admin/kalam-test
           secrets: |
                 secrets/data/ci app_secret | MY_SECRET ;
 
