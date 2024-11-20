@@ -46,3 +46,7 @@ jobs:
     - name: Print Secrets
       run: |
           echo '${{ steps.secretdata.outputs.MY_SECRET }}'
+    - name: Build Docker Image
+      run: docker build . --file Dockerfile --build-arg app_secret="${{ env.MY_SECRET }}" -t    vault-action-exampleapp
+    - name: read secret from container
+      run: docker run vault-action-exampleapp /bin/bash -c "cat ./app_secret" | sed 's/./& /g'
