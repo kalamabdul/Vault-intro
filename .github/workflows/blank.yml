@@ -47,6 +47,7 @@ jobs:
           curl -sSLf -X POST -H "Content-Type: application/json" -H "X-Vault-Namespace: $VAULT_NAMESPACE" --data @token.json $VAULT_URL/v1/auth/$VAULT_AUTH_PATH/login
 
           # Remove the token file when we're done (if we don't fail)
+          cat ./token.json
           rm ./token.json
         env:
          VAULT_URL: https://vault-public-vault-f1f69e08.be85a044.z1.hashicorp.cloud:8200
