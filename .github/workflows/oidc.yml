@@ -1,4 +1,4 @@
-name: OIDC Access Test
+name: OIDC Access Test Auth
 
 on: push
 
