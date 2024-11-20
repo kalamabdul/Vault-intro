@@ -1,4 +1,4 @@
-name: OIDC Access Test
+name: OIDC Access Test Token
 
 on: push
 
@@ -23,7 +23,7 @@ jobs:
       with: ${{ secrets.VAULT_TOKEN }}
         url: ${{ secrets.VAULT_ADDR }}
         namespace: ${{ secrets.VAULT_NAMESPACE }}
-        token: 
+        token: ${{ secrets.VAULT_TOKEN }}
         secrets: ${{ secrets.VAULT_SECRET_PATH }} ${{ secrets.VAULT_SECRET_KEY }} | MY_SECRET
 
     - name: Print Secrets
